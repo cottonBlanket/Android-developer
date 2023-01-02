@@ -3,21 +3,21 @@ from django.shortcuts import render
 
 
 def index(request):
-    return HttpResponse('MAIN PAGE')
+    return render(request, 'Android-developer/index.html', {'title': 'Главная страница'})
 
 
 def relevance(request):
-    return HttpResponse('Relevance page')
+    return render(request, 'Android-developer/relevance.html', {'title': 'Главная страница'})
 
 
 def areas(request):
-    return HttpResponse('Areas page')
+    return render(request, 'Android-developer/area.html', {'title': 'Главная страница'})
 
 
 def competencies(request):
-    return HttpResponse('competencies page')
+    return render(request, 'Android-developer/competencies.html', {'title': 'Главная страница'})
 
 
 def vacancies(request):
-    return HttpResponse('vacancies page')
+    return render(request, 'Android-developer/vacancies.html', {'title': 'Главная страница'})
 
