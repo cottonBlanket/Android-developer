@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+</head>
+<body>
+<header class="main-header">
+    <p>Android-developer</p>
+</header>
+<main>
+    <div class="navigation">
+        <ul>
+            <li><a href="http://localhost:8000/">Главная</a></li>
+            <li><a href="http://localhost:8000/relevance/">Востребованность</a></li>
+            <li><a href="http://localhost:8000/areas/">География</a></li>
+            <li><a href="http://localhost:8000/competencies/">Навыки</a></li>
+            <li><a href="http://localhost:8000/vacancies/">Вакансии</a></li>
+        </ul>
+    </div>
+    {% block main %}
+    {% endblock main %}
+</main>
+<footer>
+    <p>Сайт сделан в рамках итогового проекта по курсу Технологии программирования на Python</p>
+    <p>Выполнил: Мухаметшин Данил Рустамович</p>
+    <p>Группа: РИ-210950</p>
+</footer>
+</body>
+</html>
