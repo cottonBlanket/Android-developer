@@ -9,15 +9,11 @@
     <p>Android-developer</p>
 </header>
 <main>
-    <div class="navigation">
-        <ul>
-            <li><a href="http://localhost:8000/">Главная</a></li>
-            <li><a href="http://localhost:8000/relevance/">Востребованность</a></li>
-            <li><a href="http://localhost:8000/areas/">География</a></li>
-            <li><a href="http://localhost:8000/competencies/">Навыки</a></li>
-            <li><a href="http://localhost:8000/vacancies/">Вакансии</a></li>
-        </ul>
-    </div>
+    <ul class="main-nav">
+        {% for item in navigation %}
+            <li class="nav-item"><a href="{% url item.url %}">{{ item.name }}</a></li>
+        {% endfor %}
+    </ul>
     {% block main %}
     {% endblock main %}
 </main>

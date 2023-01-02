@@ -1,23 +1,51 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 
+navigation = [
+    {'name': 'Главная', 'url': 'home'},
+    {'name': 'Востребованность', 'url': 'relevance'},
+    {'name': 'География', 'url': 'areas'},
+    {'name': 'Навыки', 'url': 'competencies'},
+    {'name': 'Вакансии', 'url': 'vacancies'},
+]
+
 
 def index(request):
-    return render(request, 'Android-developer/index.html', {'title': 'Главная страница'})
+    context = {
+        'title': 'Главная страница',
+        'navigation': navigation
+    }
+    return render(request, 'Android-developer/index.html', context=context)
 
 
 def relevance(request):
-    return render(request, 'Android-developer/relevance.html', {'title': 'Главная страница'})
+    context = {
+        'title': 'Востребованность',
+        'navigation': navigation
+    }
+    return render(request, 'Android-developer/relevance.html', context=context)
 
 
 def areas(request):
-    return render(request, 'Android-developer/area.html', {'title': 'Главная страница'})
+    context = {
+        'title': 'География',
+        'navigation': navigation
+    }
+    return render(request, 'Android-developer/area.html', context=context)
 
 
 def competencies(request):
-    return render(request, 'Android-developer/competencies.html', {'title': 'Главная страница'})
+    context = {
+        'title': 'Навыки',
+        'navigation': navigation
+    }
+    return render(request, 'Android-developer/competencies.html', context=context)
 
 
 def vacancies(request):
-    return render(request, 'Android-developer/vacancies.html', {'title': 'Главная страница'})
+    context = {
+        'title': 'Вакансии',
+        'navigation': navigation
+    }
+    return render(request, 'Android-developer/vacancies.html', context=context)
 
