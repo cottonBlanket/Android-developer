@@ -1,3 +1,5 @@
+{% load static %}
+{% load  android_tags %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,12 +17,24 @@
         {% endfor %}
     </ul>
     {% block main %}
+    {% for order in orders %}
+    {% get_item_type page_id order as type %}
+        <p>{{ type }}</p>
+    {% if type == 'text' %}
+        {% show_text page_id order %}
+        {% endif %}
+    {% if type == 'table' %}
+        {% show_table page_id order %}
+        {% endif %}
+    {% if type == 'image' %}
+        {% show_img page_id order %}
+        {% endif %}
+    {% endfor %}
+
     {% endblock main %}
 </main>
 <footer>
-    <p>Сайт сделан в рамках итогового проекта по курсу Технологии программирования на Python</p>
-    <p>Выполнил: Мухаметшин Данил Рустамович</p>
-    <p>Группа: РИ-210950</p>
+
 </footer>
 </body>
 </html>
