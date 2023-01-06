@@ -1,38 +1,36 @@
-<h2 align="center">{{ title }}</h2>
-<table class="page-table">
+{% load android_tags %}
+<table class="item-{{ item.pk }}">
     <tr>
         {% for header in headers %}
-            <th class="border" align="center">{{ header }}</th>
+            <th class="table-{{ item.pk }}-border" align="center">{{ header }}</th>
         {% endfor %}
     </tr>
     {% for row in values %}
     <tr>
         {% for cell in row %}
-            <td class="border" align="center">{{ cell }}</td>
+            <td class="table-{{ item.pk }}-border" align="center">{{ cell }}</td>
         {% endfor %}
     </tr>
     {% endfor %}
 </table>
 <style type="text/css">
-        TABLE {
-            width: 900px;
-            border-collapse: collapse;
-        }
-   .border {
-    padding: 3px;
-    border: 1px solid black;
-   }
-   BODY{
-       margin:0 auto;
-   }
+{#    {% get_styles item as styles %}#}
+{#    {% if styles == 0 %}#}
+{#        .table-{{ item.pk }} {#}
+{#            width: 900px;#}
+{#            border-collapse: collapse;#}
+{#        }#}
+{##}
+{#   .table-{{ item.pk }}-border {#}
+{#    padding: 3px;#}
+{#    border: 1px solid black;#}
+{#   }#}
+{##}
+{#   .table-{{ item.pk }} {#}
+{#       float: left;#}
+{#       width: 45%;#}
+{#       margin-left: 10%;#}
+{#   }#}
+{#    {% endif %}#}
 
-   .page-table{
-       float: left;
-       width: 45%;
-   }
-   .page-table{
-       float: left;
-       width: 45%;
-       margin-left: 10%;
-   }
   </style>

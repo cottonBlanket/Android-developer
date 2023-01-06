@@ -1,0 +1,48 @@
+{% load android_tags %}
+<h2>{{ section.title }}</h2>
+<section class="section-{{ section.pk }}">
+{% get_content section as content %}
+{% for item in content %}
+    {% if item.title %}
+        <h3>{{ item.title }}</h3>
+    {% endif %}
+    {% if item.content_type == 'text' %}
+            <p class="item-{{ item.pk }}">{{ item.content }}</p>
+        {% endif %}
+    {% if item.content_type == 'table' %}
+        {% show_table item %}
+        {% endif %}
+    {% if item.content_type == 'image' %}
+        <img src="{{ item.resource.url }}" class="item-{{ item.pk }}">
+        {% endif %}
+    <style type="text/css">
+        {% get_styles item.pk as styles %}
+        {% if styles is not defined %}
+            .item-{{ item.pk }} {
+            {% if styles.width is not defined %}
+                width: {{ styles.width }}px;
+                {%  endif %}
+            {% if styles.height is not defined %}
+                height: {{ styles.height }}px;
+                {%  endif %}
+            {% if styles.margin is not defined %}
+                margin: {{ styles.margin }};
+                {%  endif %}
+            {% if styles.border is not defined %}
+                border: {{ styles.border }};
+                {%  endif %}
+            {% if styles.others is not defined %}
+                {{ styles.others }}
+                {%  endif %}
+        }
+        {% endif %}
+    </style>
+{% endfor %}
+</section>
+<style type="text/css">
+    .section-{{ section.id }}{
+        display: flex;
+        flex-direction: {{ section.display }};
+    }
+    {{ section.styles }}
+</style>

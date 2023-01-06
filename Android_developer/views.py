@@ -2,11 +2,6 @@ from django.shortcuts import render
 from .models import *
 
 
-def get_orders(page_id):
-    orders = sorted(list(map(lambda x: x.order, Content.objects.filter(page=page_id))))
-    return orders
-
-
 def get_page_context(page_id: int):
     navigation = [
         {'name': 'Главная', 'url': 'home'},
@@ -17,7 +12,7 @@ def get_page_context(page_id: int):
     ]
     context = {'navigation': navigation,
                'title': Page.objects.get(pk=page_id).title,
-               'orders': get_orders(page_id),
+               'sections': sorted(Section.objects.filter(page=page_id), key=lambda x: x.order),
                'page_id': page_id}
     return context
 

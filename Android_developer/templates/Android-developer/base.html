@@ -18,18 +18,8 @@
     </ul>
     {% block main %}
 
-    {% for order in orders %}
-    {% get_item_type page_id order as type %}
-        <p>{{ type }}</p>
-    {% if type == 'text' %}
-        {% show_text page_id order %}
-        {% endif %}
-    {% if type == 'table' %}
-        {% show_table page_id order %}
-        {% endif %}
-    {% if type == 'image' %}
-        {% show_img page_id order %}
-        {% endif %}
+    {% for section in sections %}
+        {% show_section section %}
     {% endfor %}
 
     {% endblock main %}

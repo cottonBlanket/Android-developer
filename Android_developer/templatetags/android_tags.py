@@ -4,33 +4,33 @@ register = template.Library()
 
 
 @register.simple_tag()
-def get_item_type(page_id, order):
-    content = Content.objects.get(page=page_id, order=order)
-    return content.content_type
+def get_content(section_id):
+    content = Content.objects.filter(section=section_id)
+    return content
+
+
+@register.simple_tag()
+def get_styles(item_id):
+    try:
+        styles = Style.objects.get(pk=item_id)
+        return styles
+    except:
+        return None
+
+
+@register.inclusion_tag('Android-developer/content_templates/section.html')
+def show_section(section: Section):
+    return {'section': section}
 
 
 @register.inclusion_tag('Android-developer/content_templates/table.html')
-def show_table(page_id, order):
-    table = Content.objects.filter(page=page_id, order=order).first()
+def show_table(table: Content):
     content = table.content.strip().split('\n')
     headers = content[0].split(',')
     rows = content[1:]
     values = [row.split(',') for row in rows]
-    return {'title': table.title,
-            'headers': headers,
-            'values': values}
-
-
-@register.inclusion_tag('Android-developer/content_templates/image.html')
-def show_img(page_id, order):
-    image = Content.objects.get(page=page_id, order=order)
-    return {'image': image}
-
-
-@register.inclusion_tag('Android-developer/content_templates/text.html')
-def show_text(page_id, order):
-    text = Content.objects.get(page=page_id, order=order)
-    return {'text': text}
-
+    return {'headers': headers,
+            'values': values,
+            'item': table}
 
 

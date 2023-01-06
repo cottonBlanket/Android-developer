@@ -78,7 +78,7 @@ WSGI_APPLICATION = 'Mukhametshin_django_project.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'AndroidDBv5',
+        'NAME': BASE_DIR / 'AndroidDBv7',
     }
 }
 
