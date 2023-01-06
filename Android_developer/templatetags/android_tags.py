@@ -5,22 +5,16 @@ register = template.Library()
 
 @register.simple_tag()
 def get_item_type(page_id, order):
-    text = Text.objects.filter(page=page_id, order=order)
-    if len(text) != 0:
-        return 'text'
-    image = Image.objects.filter(page=page_id, order=order)
-    if len(image) != 0:
-        return 'image'
-    table = Table.objects.filter(page=page_id, order=order)
-    if len(table) != 0:
-        return 'table'
+    content = Content.objects.get(page=page_id, order=order)
+    return content.content_type
 
 
 @register.inclusion_tag('Android-developer/content_templates/table.html')
 def show_table(page_id, order):
-    table = Table.objects.filter(page=page_id, order=order).first()
-    headers = table.headers.strip().split(',')
-    rows = table.content.strip().split('\n')
+    table = Content.objects.filter(page=page_id, order=order).first()
+    content = table.content.strip().split('\n')
+    headers = content[0].split(',')
+    rows = content[1:]
     values = [row.split(',') for row in rows]
     return {'title': table.title,
             'headers': headers,
@@ -29,13 +23,13 @@ def show_table(page_id, order):
 
 @register.inclusion_tag('Android-developer/content_templates/image.html')
 def show_img(page_id, order):
-    image = Image.objects.filter(page=page_id, order=order).first()
+    image = Content.objects.get(page=page_id, order=order)
     return {'image': image}
 
 
 @register.inclusion_tag('Android-developer/content_templates/text.html')
 def show_text(page_id, order):
-    text = Text.objects.filter(page=page_id, order=order).first()
+    text = Content.objects.get(page=page_id, order=order)
     return {'text': text}
 
 

@@ -17,6 +17,7 @@
         {% endfor %}
     </ul>
     {% block main %}
+
     {% for order in orders %}
     {% get_item_type page_id order as type %}
         <p>{{ type }}</p>
