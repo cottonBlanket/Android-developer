@@ -1,10 +1,12 @@
 {% load android_tags %}
-<h2>{{ section.title }}</h2>
 <section class="section-{{ section.pk }}">
+<h2>{{ section.title }}</h2>
 {% get_content section as content %}
+<div class="section-{{ section.pk }}-content">
 {% for item in content %}
+    <div class="content-{{ item.pk }}">
     {% if item.title %}
-        <h3>{{ item.title }}</h3>
+        <h3 class="content-title-{{ item.pk }}">{{ item.title }}</h3>
     {% endif %}
     {% if item.content_type == 'text' %}
             <p class="item-{{ item.pk }}">{{ item.content }}</p>
@@ -13,36 +15,48 @@
         {% show_table item %}
         {% endif %}
     {% if item.content_type == 'image' %}
-        <img src="{{ item.resource.url }}" class="item-{{ item.pk }}">
+        <img src="{{item.resource.url}}" class="item-{{ item.pk }}">
         {% endif %}
     <style type="text/css">
         {% get_styles item.pk as styles %}
-        {% if styles is not defined %}
+        {% if styles is not none %}
             .item-{{ item.pk }} {
-            {% if styles.width is not defined %}
+            {% if styles.width is not defined and styles.width != 0  %}
                 width: {{ styles.width }}px;
                 {%  endif %}
-            {% if styles.height is not defined %}
+            {% if styles.height is not defined  and styles.height != 0 %}
                 height: {{ styles.height }}px;
                 {%  endif %}
-            {% if styles.margin is not defined %}
+            {% if styles.margin is not defined  and styles.margin != '0'%}
                 margin: {{ styles.margin }};
                 {%  endif %}
-            {% if styles.border is not defined %}
+            {% if styles.border is not defined  and styles.border != '0' %}
                 border: {{ styles.border }};
                 {%  endif %}
+            border-collapse: collapse;
+            margin-left: auto;
+            margin-right: auto;
+            word-wrap: break-word;
+        }
+            .content-{{ item.pk }} {
             {% if styles.others is not defined %}
                 {{ styles.others }}
                 {%  endif %}
-        }
+            }
         {% endif %}
     </style>
+    </div>
 {% endfor %}
+</div>
 </section>
 <style type="text/css">
-    .section-{{ section.id }}{
+    h3 {
+        text-align: center;
+    }
+    .section-{{ section.id }}-content {
         display: flex;
         flex-direction: {{ section.display }};
+        justify-content: space-between;
     }
     {{ section.styles }}
 </style>

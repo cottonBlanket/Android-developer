@@ -12,18 +12,18 @@ def get_content(section_id):
 @register.simple_tag()
 def get_styles(item_id):
     try:
-        styles = Style.objects.get(pk=item_id)
+        styles = Style.objects.get(content_id=item_id)
         return styles
     except:
         return None
 
 
-@register.inclusion_tag('Android-developer/content_templates/section.html')
+@register.inclusion_tag('Android-developer/section.html')
 def show_section(section: Section):
     return {'section': section}
 
 
-@register.inclusion_tag('Android-developer/content_templates/table.html')
+@register.inclusion_tag('../templates/Android-developer/content_templates/table.html')
 def show_table(table: Content):
     content = table.content.strip().split('\n')
     headers = content[0].split(',')

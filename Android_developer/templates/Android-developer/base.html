@@ -4,18 +4,31 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'Android-developer/css/style.css' %}">
+{#    <link href="{% static 'Android-developer/css/outline-settings.css' %}" rel="stylesheet">#}
+{#<link href="{% static 'Android-developer/css/outline.css' %}" rel="stylesheet">#}
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <title>{{ title }}</title>
 </head>
 <body>
 <header class="main-header">
-    <p>Android-developer</p>
-</header>
-<main>
-    <ul class="main-nav">
+<img src="{% static 'Android-developer/img/nav-logo.png' %}" class="nav-logo">
+    <ul class="main-nav-list">
         {% for item in navigation %}
             <li class="nav-item"><a href="{% url item.url %}">{{ item.name }}</a></li>
         {% endfor %}
     </ul>
+
+</header>
+<main>
+<div class="logo">
+        <img src="{% static 'Android-developer/img/logo.png' %}" width="154" height="45">
+    </div>
+<div class="main-content">
     {% block main %}
 
     {% for section in sections %}
@@ -23,9 +36,13 @@
     {% endfor %}
 
     {% endblock main %}
+</div>
 </main>
 <footer>
-
+    <div class="author">
+        <p>Мухаметшин Данил Рустамович АТ-36</p>
+        <p>РИ-210950</p>
+    </div>
 </footer>
 </body>
 </html>
