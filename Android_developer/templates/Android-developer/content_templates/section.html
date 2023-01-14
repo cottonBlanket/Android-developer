@@ -1,0 +1,49 @@
+{% load android_tags %}
+<section class="section-{{ section.pk }}">
+<h2>{{ section.title }}</h2>
+{% get_content section as content %}
+<div class="section-{{ section.pk }}-content">
+{% for item in content %}
+    <div class="item-{{ item.pk }}">
+    {% if item.title %}
+        <p class="content-title-{{ item.pk }}">{{ item.title }}</p>
+    {% endif %}
+    {% if item.content_type == 'text' %}
+
+            {% get_text item as text %}
+            {% for t in text %}
+                <p>{{ t }}</p>
+            {% endfor %}
+
+        {% endif %}
+
+    {% if item.content_type == 'table' %}
+        {% show_table item %}
+        {% endif %}
+    {% if item.content_type == 'image' %}
+        <img src="{{item.resource.url}}" class="item-{{ item.pk }}">
+        {% endif %}
+    <style type="text/css">
+        .item-{{ item.pk }}
+        {
+        {{ item.style }}
+        }
+        .content-title-{{ item.pk }} {
+        {{ item.title_styles }}
+        }
+    </style>
+    </div>
+{% endfor %}
+</div>
+<style type="text/css">
+    .section-{{ section.id }}-content {
+    {{ section.styles }}
+    }
+
+    .section-{{ section.pk }} h2 {
+    {{ section.title_styles }}
+    }
+
+</style>
+</section>
+

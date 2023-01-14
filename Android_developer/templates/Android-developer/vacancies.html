@@ -1,5 +1,29 @@
 {% extends 'Android-developer/base.html' %}
-
 {% block main %}
-    <h1>Страница с вакансиями</h1>
+    <section class="vacancies">
+        <h1>Последние вакансии</h1>
+        <p>На данной странице вы можете ознакомиться со свежей выгрузкой вакансий android-разработчика с сайта <a href="https://ekaterinburg.hh.ru/">hh.ru</a></p>
+        <ul class="vacancies_list">
+        {% for vacancy in vacancies %}
+            <li class="vacancy">
+                <p>Название: {{ vacancy.name }};</p>
+                <p>Описание:{{ vacancy.description|truncatechars:50 }} <button></button></p>
+                {% if vacancy.key_skills is defined %}
+                <p>Навыки: не указано</p>
+                {% else %}
+                <p>Навыки: {{ vacancy.key_skills|truncatechars:50 }}<button></button></p>
+                {% endif %}
+                <p>Компания: {{ vacancy.company }};</p>
+                {% if vacancy.salary is defined %}
+                    <p>Оклад: не указан;</p>
+                {% else %}
+                    <p>Оклад: {{ vacancy.salary }};</p>
+                {% endif %}
+                <p>Город: {{ vacancy.area_name }};</p>
+                <p>Дата и время публикации: {{ vacancy.published_at }}</p>
+            </li>
+        {% endfor %}
+        </ul>
+    </section>
+
 {% endblock main %}

@@ -14,23 +14,7 @@
     {% endfor %}
 </table>
 <style type="text/css">
-    {% get_styles item as styles %}
-    {% if styles is not none %}
-        .table-{{ item.pk }} {
-            width: 900px;
-            border-collapse: collapse;
-        }
-
-   .table-{{ item.pk }}-border {
-    padding: 3px;
-    border: 1px solid black;
-   }
-
-   .table-{{ item.pk }} {
-       float: left;
-       width: 45%;
-       margin-left: 10%;
-   }
-    {% endif %}
-
-  </style>
+    .item-{{ item.pk }} {
+    {{ item.style }}
+    }
+</style>
