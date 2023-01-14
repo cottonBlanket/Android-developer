@@ -1,1 +1,5 @@
 /Android_developer/static/Android-developer/dataset
+/venv
+/.idea
+**/__pycache__/
+/static
