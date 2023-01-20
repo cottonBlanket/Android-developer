@@ -18,7 +18,7 @@ class Vacancy:
 def get_data():
     result = []
     request = requests.get(
-        r"https://api.hh.ru/vacancies?text=android&search_field=name&order_by=publication_time&per_page=10&page=1&date_from=2022-12-21T00:00:00&date_to=2022-12-22T12:00:00")
+        r"https://api.hh.ru/vacancies?text=android&search_field=name&order_by=publication_time&per_page=10&page=1&date_from=2022-12-10T00:00:00&date_to=2022-12-22T12:00:00")
     json_text = request.text
     json_data = json.loads(json_text)
     items = json_data['items']

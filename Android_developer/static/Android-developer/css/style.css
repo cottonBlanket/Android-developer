@@ -198,3 +198,15 @@ line-height: 23px;
 .vacancy:last-child {
     margin-bottom: 0;
 }
+
+.description-container {
+    margin-bottom: 18px;
+}
+
+.description {
+    display: none;
+}
+
+.active {
+    display: block;!important;
+}
