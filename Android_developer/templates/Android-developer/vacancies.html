@@ -11,7 +11,7 @@
                 {% if vacancy.key_skills is defined %}
                 <p>Навыки: не указано</p>
                 {% else %}
-                <p>Навыки: {{ vacancy.key_skills }}<button></button></p>
+                <p>Навыки: {{ vacancy.key_skills }}</p>
                 {% endif %}
                 <p>Компания: {{ vacancy.company }};</p>
                 {% if vacancy.salary is defined %}
